@@ -1,0 +1,21 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> strings = Arrays.asList("a", "b", "c", "b");
+
+        // Example with a merge function
+        Map<String, Integer> resultMap = strings.stream()
+                .collect(Collectors.toMap(
+                        // Key mapper
+                        str -> str,
+                        // Value mapper
+                        str -> 1,
+                        // Merge function for handling duplicates
+                        (existingValue, newValue) -> existingValue + newValue
+                ));
+
+        System.out.println(resultMap); // Output: {a=1, b=2, c=1}
+    }
+}
